@@ -64,6 +64,8 @@ if (navigator.userAgent.indexOf('Chrome') != -1 && navigator.userAgent.indexOf('
 	BROWSER = "Chrome";
 else if (navigator.userAgent.indexOf('OPR') != -1)
 	BROWSER = "Opera";
+else if (navigator.userAgent.indexOf('Safari') != -1)
+	BROWSER = "Safari";
 else
 	console.log('WARNING: Potentially unsupported browser');
 
@@ -76,3 +78,4 @@ else if (BROWSER == 'Opera')
 	if (typeof chrome.i18n != 'undefined')
 		if (chrome.i18n.getMessage('@@extension_id') === 'npnpbddfcaibgnegafofkmffmbmflelj')
 			DEBUG = 0;
+// TODO: Add prod-detection for Safari
