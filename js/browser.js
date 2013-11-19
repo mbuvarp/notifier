@@ -2,6 +2,7 @@ var Browser = {
   debug: 0,
   msgCallbackMissing: 'ERROR: Callback is missing',
   msgUnsupported: 'ERROR: Unsupported browser',
+  msgFallBack: 'ERROR: Browser lacking features, falling back to semi-good solution',
 
   setIcon: function(path) {
     if (BROWSER == 'Chrome' || BROWSER == 'Opera') {
@@ -62,6 +63,9 @@ var Browser = {
         chrome.tabs.create({url: url, selected: true});
       }
     }
+    else if (BROWSER == 'Safari') {
+      safari.application.activeBrowserWindow.openTab().url = url;
+    }
     else {
       console.log(this.msgUnsupported);
     }
@@ -72,6 +76,11 @@ var Browser = {
       if (chrome.tabs != undefined) {
         chrome.tabs.create({url: url, selected: false});
       }
+    }
+    else if (BROWSER == 'Safari') {
+      console.log(this.msgFallBack);
+      // Falling back to openTab
+      Browser.openTab(url);
     }
     else {
       console.log(this.msgUnsupported);
