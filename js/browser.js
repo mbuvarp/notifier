@@ -10,6 +10,12 @@ var Browser = {
         chrome.browserAction.setIcon({path: path});
       }
     }
+    else if (BROWSER == 'Safari') {
+      if (safari.extension != undefined) {
+        var iconUri = safari.extension.baseURI + path;
+        safari.extension.toolbarItems[0].image = iconUri;
+      }
+    }
     else {
       console.log(this.msgUnsupported);
     }
